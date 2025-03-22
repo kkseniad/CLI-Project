@@ -1,7 +1,7 @@
 # Movie Shelf CLI
 A command line interface app to simulate a movie collection
 
-## User storie's
+## User stories
 
 ### Basic Operations
 - As a user, I want to add movies to my shelf so that I can store them.
