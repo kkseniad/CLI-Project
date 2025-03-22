@@ -1,6 +1,7 @@
 require_relative "movie"
 
 class Shelf
+  attr_reader :movies
   
   def initialize
     @movies = {}
@@ -8,14 +9,14 @@ class Shelf
 
   def run
     loop do
-      puts "\nWelcome to Movie Shelf"
+      puts "\nWelcome to Movie Shelf!"
 
       puts "1. Add a movie."
       puts "2. Update a movie."
       puts "3. Delete a movie."
       puts "4. Display all movies."
       puts "5. Exit"
-      print "What would you like to do?"
+      print "What would you like to do? "
       choice = gets.chomp.to_i
       puts "\n" 
       
@@ -28,14 +29,14 @@ class Shelf
       elsif choice == 2
         print "What movie do you want to update? "
         name = gets.chomp
-        update_movie(name, rate)
+        update_movie(name)
       elsif choice == 3
         print "What movie do you want to delete? "
         name = gets.chomp
         delete_movie(name)
-      when 4
+      elsif choice == 4
         display_movies
-      when 5
+      elsif choice == 5
         puts "Thank you for using the Movie Shelf. See you later!"
         break
       else
