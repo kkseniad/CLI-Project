@@ -9,6 +9,7 @@ class Shelf
   def run
     loop do
       puts "\nWelcome to Movie Shelf"
+
       puts "1. Add a movie."
       puts "2. Update a movie."
       puts "3. Delete a movie."
@@ -18,62 +19,59 @@ class Shelf
       choice = gets.chomp.to_i
       puts "\n" 
       
-      case choice
-      when 1
-        add
-      when 2
-        update
-      when 3
-        delete
+      if choice == 1
+        print "What movie do you want to add? "
+        name = gets.chomp
+        print "What is its rating? "
+        rate = gets.chomp
+        add_movie(name, rate)
+      elsif choice == 2
+        print "What movie do you want to update? "
+        name = gets.chomp
+        update_movie(name, rate)
+      elsif choice == 3
+        print "What movie do you want to delete? "
+        name = gets.chomp
+        delete_movie(name)
       when 4
-        display
+        display_movies
       when 5
         puts "Thank you for using the Movie Shelf. See you later!"
         break
       else
-        puts "Invalid input. Please try again"
+        puts "Invalid input. Please try again."
       end
     end
   end
 
-  def add
-    print "What movie do you want to add?"
-    name = gets.chomp
-    print "What is its rating?"
-    rate = gets.chomp
+  def add_movie(name, rate)
     @movies[name] = Movie.new(name,rate)
-    puts "Movie added successfully"
+    puts "Movie added successfully!"
   end
 
-  def update
-    print "What movie do you want to update?"
-    name = gets.chomp
+  def update_movie(name)
     if @movies.key?(name)
-      print "Enter the new rating:"
+      print "Enter the new rating: "
       rate = gets.chomp
       @movies[name].rating = rate
-      puts "Movie raiting updated!"
+      puts "Movie rating updated!"
     else
-      puts "Movie not found"
-    end
+      puts "Movie not found."
+    end   
   end
 
-  def delete
-    print "What movie do you want to delete?"
-      name = gets.chomp
+  def delete_movie(name)
       if @movies.key?(name)
         @movies.delete(name)
         puts "Movie deleted successfully!"
       else
-        puts "Movie not found"
+        puts "Movie not found."
       end
   end
 
-  def display
+  def display_movies
     puts "Movies on your shelf:\n"
-    @movies.each do |name, movie|
-      puts movie
-    end
+    @movies.each_value { |movie| puts movie }
   end
 
 end
